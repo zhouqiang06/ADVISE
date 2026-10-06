@@ -115,11 +115,11 @@ The independent validation dataset should not be used to tune the DNN or select 
 ### 2. Train the DNN
 
 The DNN represents the relationship
-
+$$
 \[
 \hat{y}=f_\theta(x_1,x_2,\ldots,x_p).
 \]
-
+$$
 The trained model provides both predicted responses and local partial derivatives.
 
 A sufficiently accurate DNN is important because the derivative information extracted later reflects the behavior learned by the DNN.
@@ -143,19 +143,19 @@ Do not optimize hyperparameters against the final independent validation/test da
 ### 4. Calculate partial derivatives
 
 Automatic differentiation is used to calculate:
-
+$$
 \[
 \frac{\partial \hat{y}}{\partial x_j}.
 \]
-
+$$
 These derivatives quantify the local sensitivity of the DNN prediction to each predictor.
 
 For example,
-
+$$
 \[
 \frac{\partial \hat{AGB}}{\partial DBH}
 \]
-
+$$
 describes the local change in predicted biomass with respect to DBH while holding the other predictors fixed.
 
 If predictors were standardized before DNN training, derivatives must be transformed appropriately before interpretation in physical units.
@@ -203,13 +203,13 @@ If the required functional form is excluded from the operator set, symbolic regr
 Candidate equations are evaluated using both response predictions and local derivatives.
 
 For a candidate equation \(g(x)\):
-
+$$
 \[
 \frac{\partial g}{\partial x_j}
 \approx
 \frac{\partial \hat{y}}{\partial x_j}.
 \]
-
+$$
 This can distinguish equations that have similar prediction accuracy but different local functional behavior.
 
 Equation selection should consider:
@@ -223,17 +223,17 @@ Equation selection should consider:
 ### 8. Variables absent from a candidate equation
 
 A symbolic equation may omit an input variable. For example,
-
+$$
 \[
 y = a x_1^2
 \]
-
+$$
 has
-
+$$
 \[
 \frac{\partial y}{\partial x_2}=0.
 \]
-
+$$
 If the DNN-derived derivative with respect to `x2` is nonzero, the candidate can receive a derivative penalty.
 
 The corresponding option is conceptually controlled by:
