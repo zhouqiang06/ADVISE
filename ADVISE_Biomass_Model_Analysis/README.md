@@ -115,11 +115,13 @@ The independent validation dataset should not be used to tune the DNN or select 
 ### 2. Train the DNN
 
 The DNN represents the relationship
+
 $$
 \[
 \hat{y}=f_\theta(x_1,x_2,\ldots,x_p).
 \]
 $$
+
 The trained model provides both predicted responses and local partial derivatives.
 
 A sufficiently accurate DNN is important because the derivative information extracted later reflects the behavior learned by the DNN.
